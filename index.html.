@@ -17,17 +17,17 @@
 
         h1 {
             font-size: 40px;
-            color: #d63384;
+            color: red;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             animation: pulse 1.5s infinite alternate;
         }
 
         .buttons {
             margin-top: 30px;
-            position: relative;
             display: flex;
             justify-content: center;
-            gap: 50px;
+            gap: 60px;
+            position: relative;
         }
 
         button {
@@ -41,20 +41,21 @@
         }
 
         .yes {
-            background-color: #ff4d6d;
+            background-color: red;
             color: white;
             animation: bounce 1s infinite alternate;
         }
 
         .no {
-            background-color: #6c757d;
-            color: white;
+            background-color: white;
+            color: red;
+            border: 2px solid red;
             transition: 0.3s ease-in-out;
         }
 
         .no:hover {
-            background-color: #495057;
-            transform: scale(1.1);
+            background-color: red;
+            color: white;
         }
 
         .floating-heart {
@@ -64,59 +65,44 @@
             animation: float 5s linear infinite;
         }
 
-        .floating-text {
+        .floating-text, .floating-cat {
             position: absolute;
             font-size: 18px;
-            color: white;
-            opacity: 0.8;
+            color: red;
+            opacity: 0.9;
             font-style: italic;
             animation: floatText 8s linear infinite;
         }
 
+        .floating-cat {
+            font-size: 30px;
+            color: white;
+        }
+
         @keyframes pulse {
-            from {
-                transform: scale(1);
-            }
-            to {
-                transform: scale(1.1);
-            }
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
         }
 
         @keyframes bounce {
-            from {
-                transform: translateY(0);
-            }
-            to {
-                transform: translateY(-5px);
-            }
+            from { transform: translateY(0); }
+            to { transform: translateY(-5px); }
         }
 
         @keyframes float {
-            from {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateY(-100vh);
-                opacity: 0;
-            }
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(-100vh); opacity: 0; }
         }
 
         @keyframes floatText {
-            from {
-                transform: translateY(100vh);
-                opacity: 1;
-            }
-            to {
-                transform: translateY(-10vh);
-                opacity: 0;
-            }
+            from { transform: translateY(100vh); opacity: 1; }
+            to { transform: translateY(-10vh); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <h1>Will You Be My Valentine? 💘</h1>
+    <h1>Will You Be My Valentine? ❤️</h1>
     
     <div class="buttons">
         <button class="yes" onclick="alert('Yay! ❤️')">Yes</button>
@@ -127,24 +113,20 @@
         function addMoreYes() {
             let container = document.querySelector('.buttons');
 
-            // Creare un nuovo pulsante "Yes" con più spazio tra loro
             let yesButton = document.createElement('button');
             yesButton.innerText = "Yes";
             yesButton.className = "yes";
             yesButton.onclick = function() { alert('Yay! ❤️'); };
 
-            // Posizione casuale
             yesButton.style.position = "absolute";
             yesButton.style.left = Math.random() * 80 + "%";
             yesButton.style.top = (Math.random() * 60 + 20) + "vh";
 
             document.body.appendChild(yesButton);
 
-            // Aggiungere cuori animati
             createHeart();
-
-            // Aggiungere frasi romantiche nello sfondo
             createFloatingText();
+            createCat();
         }
 
         function createHeart() {
@@ -166,12 +148,12 @@
             let phrases = [
                 "I love you ❤️",
                 "You're my sunshine ☀️",
-                "Forever & Always 💕",
-                "You make my heart skip a beat 💓",
-                "Be mine? 💖",
-                "You're my everything ✨",
-                "Hugs & Kisses 😘",
-                "You're perfect! 💞"
+                "Forever & Always ❤️",
+                "You make my heart skip a beat ❤️",
+                "Be mine? ❤️",
+                "You're my everything ❤️",
+                "Hugs & Kisses ❤️",
+                "You're perfect! ❤️"
             ];
 
             let text = document.createElement('div');
@@ -185,6 +167,22 @@
 
             setTimeout(() => {
                 text.remove();
+            }, 8000);
+        }
+
+        function createCat() {
+            let cats = ["🐱", "😺", "😻", "🐈", "🐈‍⬛", "😸", "😽"];
+            let cat = document.createElement('div');
+            cat.innerText = cats[Math.floor(Math.random() * cats.length)];
+            cat.className = "floating-cat";
+            cat.style.left = Math.random() * 90 + "vw";
+            cat.style.top = "100vh";
+            cat.style.animationDuration = (Math.random() * 4 + 6) + "s";
+
+            document.body.appendChild(cat);
+
+            setTimeout(() => {
+                cat.remove();
             }, 8000);
         }
     </script>
